@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+
+{% block content  %}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{% url 'qarzlar' %}"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST">
+                {% csrf_token %}
+                {% if qarz.condition == 'ol' %}
+                <p>Haqiqatan ham "{{qarz.name}}"dan olingan qarzingizni o'chirmoqchimisiz?</p>
+                {% else %}
+                <p>Haqiqatan ham "{{qarz.name}}"ning qarzini o'chirmoqchimisiz?</p>
+                {% endif %}
+                <a class="btn btn--sub btn--lg  my-md" href="{% url 'qarzlar' %}">&#x2190 Bekor qilish</a>
+                <input  class="btn btn--sub btn--lg  my-md" type="submit" value="O'chirish" />
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock content %}

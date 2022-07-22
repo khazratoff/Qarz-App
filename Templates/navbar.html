@@ -1,0 +1,34 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QARZBOOK</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container container--narrow">
+          <a  class="header__logo">
+            <img src="{% static 'images/logo.svg' %}" alt="DevSearch Logo" height="500px" width="500px" />
+          </a>
+          <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+              <span>Menu</span>
+              <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+            {% if request.user.is_authenticated %}
+            <li class="header__menuItem"><a href="{% url 'qarzlar' %}">Qarz daftari</a></li>
+            <li class="header__menuItem"><a href="{% url 'qarz-yaratish' %}">Yangi Qarz yaratish</a></li>
+              {% endif %}
+
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+</body>
+</html>

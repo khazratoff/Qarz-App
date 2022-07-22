@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'images/logo.svg' %}" alt="icon" height="100px" width="100px" />
+        </a>
+        <h3>Assalomu alaykum</h3>
+        <p>"Cирож" xususiy korxonasi</p>
+        <p>Iltimos shaxsingizni tasdiqlang</p>
+      </div>
+      <form action="" method="POST" class="form auth__form">
+        {% csrf_token %}
+        <!-- Input:Username -->
+        <div class="form__field">
+          <label for="formInput#text">Ismingiz: </label>
+          <input
+            class="input input--text"
+            id="formInput#text"
+            type="text"
+            name="username"
+            placeholder="Enter your username..."
+          />
+        </div>
+
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Parol: </label>
+          <input
+            class="input input--password"
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Tasdiqlash" />
+          <a href="http://t.me/khazratoff_tm/">Dasturchi bilan bog'lanish</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+{% endblock content  %}

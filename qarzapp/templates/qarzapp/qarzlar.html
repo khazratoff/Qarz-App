@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content  %}
+<!-- Main Section -->
+<main class="home">
+    <section class="hero-section text-center">
+      <div class="container container--narrow">
+        <div class="hero-section__box">
+          <h2><span> QARZ</span></h2>
+          <h2>daftariga xush kelibsiz</h2>
+          <h2></h2>
+        </div>
+
+        <div class="hero-section__search">
+          <form id="searchForm" class="form" action="" method="get">
+            <div class="form__field">
+              <label for="formInput#search">Qidirsh</label>
+              <input class="input input--text" id="formInput#search" type="text" name="text"
+               value="{{text}}" placeholder="Qarzdorlar orasidan qidirish" />
+            </div>
+            <input class="btn btn--sub btn--lg" type="submit" value="Qidirish" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Search Result: DevList -->
+    {% if qarzdor %}
+    <section class="devlist">
+      <div class="container">
+        <div class="grid grid--one">
+            {% for qarz in qarzdor %}
+          <div class="column card">
+            <div class="dev">
+                <a  href="" class="card__body">
+                <div class="dev__profile">
+                  <img   class="avatar avatar--md" src="{% static 'images/def.png' %}" alt="image" />
+                  <div class="dev__meta">
+                    <h5>{{qarz.name}}</h5>
+                    {% if qarz.condition == 'ber' %}
+                    {% if qarz.currency == 'usd' %}
+                    <h3 style="color:red;">-{{qarz.amount}} USD</h3>
+                    {% else %}
+                    <h3 style="color:red;">-{{qarz.amount}} UZS</h3>
+                    {% endif %}
+                    {% else %}
+                    {% if qarz.currency == 'usd' %}
+                    <h3 style="color:rgb(61, 255, 31);">+{{qarz.amount}} USD</h3>
+                    {% else %}
+                    <h3 style="color:rgb(61, 255, 31);">+{{qarz.amount}} UZS</h3>
+                    {% endif %}
+                    {% endif %}
+                    <h7>{{qarz.date}}</h7>
+                    <td class="settings__tableActions">
+                     <a class="tag tag--pill tag--main  settings__btn" href="{% url 'qarz-tahrirlash' qarz.id %}"><i class="im im-edit"></i> Tahrirlash</a>
+                     <a class="tag tag--pill tag--main settings__btn" href="{% url 'qarz-delete' qarz.id %}"><i class="im im-x-mark-circle-o"></i>
+                        O'chirish</a>
+                    </td>
+                  </div>
+                 
+                </div>
+                
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <h2 style="position: relative;">Qarzlar topilmadi</h2>
+  {% endif %}
+  </main>
+
+
+{% endblock content %}
+<a href="http://t.me/khazratoff_tm/">Dasturchi bilan bog'lanish</a>
